@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Professional photo editing brand colors
+				brand: {
+					orange: 'hsl(var(--brand-orange))',
+					blue: 'hsl(var(--brand-blue))',
+				},
+				'warm-gray': 'hsl(var(--warm-gray))',
+				'dark-gray': 'hsl(var(--dark-gray))',
+				'light-gray': 'hsl(var(--light-gray))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
