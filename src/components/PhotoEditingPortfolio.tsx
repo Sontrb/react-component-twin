@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import beforeBrightness from "@/assets/before-brightness.jpg";
 import afterBrightness from "@/assets/after-brightness.jpg";
@@ -97,9 +98,12 @@ const PhotoEditingPortfolio = () => {
         <p className="text-muted-foreground mb-2">
           You have an order and don't have time to edit everything by yourself, we are always ready to help.
         </p>
-        <Button variant="cta" size="lg" className="mb-8">
+        <Link 
+          to="/contact" 
+          className="text-primary hover:text-primary/80 transition-colors duration-300 font-semibold text-lg mb-8 inline-block cursor-pointer"
+        >
           Place Order
-        </Button>
+        </Link>
         <p className="text-sm text-muted-foreground">
           Our samples are available in the Outstanding Service. We welcome your feedback and encourage you to contact us today for a free trial.
         </p>
