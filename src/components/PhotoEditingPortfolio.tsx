@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useState } from "react";
 import beforeBrightness from "@/assets/before-brightness.jpg";
 import afterBrightness from "@/assets/after-brightness.jpg";
 import beforeColor from "@/assets/before-color.jpg";
 import afterColor from "@/assets/after-color.jpg";
 
 const PhotoEditingPortfolio = () => {
+  const [activeTab, setActiveTab] = useState("Photo Editing");
   const services = [
     "Photo Editing",
     "Virtual Staging", 
@@ -17,28 +19,68 @@ const PhotoEditingPortfolio = () => {
     "Floor Plan"
   ];
 
-  const portfolioItems = [
-    {
-      title: "Brightness & Contrast Adjustment",
-      beforeImage: beforeBrightness,
-      afterImage: afterBrightness
-    },
-    {
-      title: "Color Correction", 
-      beforeImage: beforeColor,
-      afterImage: afterColor
-    },
-    {
-      title: "Lens Distortion Correction",
-      beforeImage: beforeBrightness,
-      afterImage: afterBrightness
-    },
-    {
-      title: "Lens Spot Removal",
-      beforeImage: beforeColor,
-      afterImage: afterColor
-    }
-  ];
+  const portfolioData = {
+    "Photo Editing": [
+      {
+        title: "Brightness & Contrast Adjustment",
+        beforeImage: beforeBrightness,
+        afterImage: afterBrightness
+      },
+      {
+        title: "Color Correction", 
+        beforeImage: beforeColor,
+        afterImage: afterColor
+      },
+      {
+        title: "Lens Distortion Correction",
+        beforeImage: beforeBrightness,
+        afterImage: afterBrightness
+      },
+      {
+        title: "Lens Spot Removal",
+        beforeImage: beforeColor,
+        afterImage: afterColor
+      }
+    ],
+    "Virtual Staging": [
+      {
+        title: "Furniture Addition",
+        beforeImage: beforeBrightness,
+        afterImage: afterBrightness
+      },
+      {
+        title: "Room Styling", 
+        beforeImage: beforeColor,
+        afterImage: afterColor
+      }
+    ],
+    "Day To Dusk": [
+      {
+        title: "Twilight Conversion",
+        beforeImage: beforeBrightness,
+        afterImage: afterBrightness
+      },
+      {
+        title: "Evening Ambiance", 
+        beforeImage: beforeColor,
+        afterImage: afterColor
+      }
+    ],
+    "Item Removal": [
+      {
+        title: "Object Removal",
+        beforeImage: beforeBrightness,
+        afterImage: afterBrightness
+      },
+      {
+        title: "Clutter Cleanup", 
+        beforeImage: beforeColor,
+        afterImage: afterColor
+      }
+    ]
+  };
+
+  const currentPortfolio = portfolioData[activeTab as keyof typeof portfolioData] || portfolioData["Photo Editing"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -66,11 +108,12 @@ const PhotoEditingPortfolio = () => {
       {/* Services Navigation */}
       <div className="max-w-6xl mx-auto px-6 mb-12">
         <div className="flex flex-wrap gap-3 justify-center">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <Button
               key={service}
-              variant={index === 0 ? "nav" : "outline"}
-              className={index === 0 ? "" : "hover:bg-brand-orange hover:text-white hover:border-brand-orange"}
+              variant={activeTab === service ? "nav" : "outline"}
+              className={activeTab === service ? "" : "hover:bg-brand-orange hover:text-white hover:border-brand-orange"}
+              onClick={() => setActiveTab(service)}
             >
               {service}
             </Button>
@@ -81,7 +124,7 @@ const PhotoEditingPortfolio = () => {
       {/* Portfolio Grid */}
       <div className="max-w-6xl mx-auto px-6 pb-12">
         <div className="grid md:grid-cols-2 gap-12">
-          {portfolioItems.map((item, index) => (
+          {currentPortfolio.map((item, index) => (
             <div key={index} className="space-y-6">
               <h3 className="text-xl font-semibold text-center text-foreground">
                 {item.title}
